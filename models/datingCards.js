@@ -6,7 +6,7 @@ const datingCards = new mongoose.Schema({
     type: String,
   },
   image: {
-    type: urlencoded,
+    type: String,
   },
 });
 
