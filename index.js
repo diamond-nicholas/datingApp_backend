@@ -1,12 +1,18 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const cors = require('cors');
 const connectDB = require('./db/connect');
 require('express-async-errors'); //async errors
 const datingCards = require('./Routes/datingCards');
 
 //app config
 app.use(express.json());
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 const PORT = process.env.PORT || 8001;
 
 //middlewares
