@@ -5,6 +5,7 @@ const cors = require('cors');
 const connectDB = require('./db/connect');
 require('express-async-errors'); //async errors
 const datingCards = require('./Routes/datingCards');
+const users = require('./Routes/user');
 
 //app config
 app.use(express.json());
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/dating', datingCards);
+app.use('/api/v1/users', users);
 
 //listener
 const start = async () => {

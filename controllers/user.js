@@ -3,7 +3,7 @@ const Users = require('../models/user');
 const createNewUser = async (req, res) => {
   try {
     const User = req.body;
-    const user = Users.create(User);
+    const user = await Users.create(User);
     return res.status(201).json({
       msg: 'User succesfully created',
       user,
