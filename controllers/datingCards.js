@@ -7,7 +7,7 @@ const createDatingCards = async (req, res) => {
     const date = await datingCards.create(dating);
     return res.status(201).json({ msg: 'succesfully created', date });
   } catch (error) {
-    return res.status(404).json(error);
+    return res.status(500).json(error);
   }
 };
 
