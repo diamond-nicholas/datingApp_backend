@@ -10,6 +10,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  biography: {
+    type: String,
+    default: null,
+  },
+  hobbies: {
+    type: Array,
+    default: null,
+  },
   email: {
     type: String,
     required: [true, 'Please provide email'],

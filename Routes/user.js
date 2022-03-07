@@ -12,12 +12,14 @@ const {
   getAllUsers,
   getOneUser,
   updateUserProfile,
+  deleteOneUser,
 } = require('../controllers/user');
 
 router.route('/create').post(createNewUser);
 router.route('/get', authenticateToken).get(getAllUsers);
 router.route('/get/:id').get(getOneUser);
 router.route('/updateprofile/:id').patch(updateUserProfile);
+router.route('/deleteone/:id').delete(deleteOneUser);
 
 router.patch(
   '/upload/:id',
