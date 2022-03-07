@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
+    default: null,
   },
   email: {
     type: String,
@@ -22,6 +23,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide password'],
     minlength: 6,
+  },
+  image: {
+    type: String,
+    default: null,
   },
   date_created: {
     type: Date,

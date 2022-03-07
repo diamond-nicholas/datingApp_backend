@@ -1,6 +1,6 @@
 const Users = require('../models/user');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 const createNewUser = async (req, res) => {
   try {
@@ -25,6 +25,42 @@ const createNewUser = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await Users.find({});
+    if (users.length < 1) {
+      return res.status(400).json({ message: 'There are no users' });
+    }
+    const nbHits = users.length;
+    return res.status(201).json({
+      message: 'user successfully fetched',
+      nbHits,
+      users: users,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: 'Failed to fetch users',
+    });
+  }
+};
+
+const AddProfileImage = async (req, res) => {
+  try {
+    const profile_image = req.file.originalname;
+
+    const img = await Users.findOneAndUpdate(profile_image);
+    console.log(img);
+    return res.status(201).json({
+      message: 'profile image updated',
+      data: img,
+    });
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
+
 module.exports = {
   createNewUser,
+  getAllUsers,
+  AddProfileImage,
 };
