@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 const authenticateToken = require('../auth/auth');
-const cloudinary = require('../utilis/cloud');
-// const upload = require('../utilis/multer.js');
 const upload = require('../utilis/helpers');
-
 const User = require('../models/user');
-const AddProfileImage = require('../controllers/user');
+// const jwt = require('jsonwebtoken');
+// const cloudinary = require('../utilis/cloud');
+// const upload = require('../utilis/multer.js');
 
 const { createNewUser, getAllUsers } = require('../controllers/user');
 
@@ -34,27 +32,5 @@ router.patch(
     }
   }
 );
-
-// router.patch('/upload/:id', upload.single('image'), AddProfileImage
-
-// async (req, res) => {
-//   AddProfileImage;
-//   // try {
-//   //   // Upload image to cloudinary
-//   //   const result = await cloudinary.uploader.upload(req.file.path);
-//   //   // console.log(req.user.username);
-//   //   // Create new user
-//   //   let user = new User({
-//   //     name: req.user.name,
-//   //     avatar: result.secure_url,
-//   //     cloudinary_id: result.public_id,
-//   //   });
-//   //   // Save user
-//   //   await user.save();
-//   //   return res.json(user);
-//   // } catch (err) {
-//   //   console.log(err.message);
-//   // }
-// });
 
 module.exports = router;

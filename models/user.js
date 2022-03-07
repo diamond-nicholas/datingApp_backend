@@ -28,6 +28,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  sex: {
+    type: String,
+    enum: {
+      values: ['male', 'female'],
+      message: '{VALUE} is not supported',
+    },
+  },
   date_created: {
     type: Date,
     default: Date.now,
