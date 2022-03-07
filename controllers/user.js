@@ -44,23 +44,24 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const AddProfileImage = async (req, res) => {
+const getOneUser = async (req, res) => {
   try {
-    const profile_image = req.file.originalname;
-
-    const img = await Users.findOneAndUpdate(profile_image);
-    console.log(img);
-    return res.status(201).json({
-      message: 'profile image updated',
-      data: img,
+    const id = req.params.id;
+    const user = await Users.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: `No user with id ${id}` });
+    }
+    return res.status(200).json({
+      message: 'Succefully fectched user',
+      user,
     });
   } catch (error) {
-    return res.status(500).json(error);
+    return res.status(404).json(error.message);
   }
 };
 
 module.exports = {
   createNewUser,
   getAllUsers,
-  AddProfileImage,
+  getOneUser,
 };

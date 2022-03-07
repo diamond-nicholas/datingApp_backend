@@ -7,10 +7,15 @@ const User = require('../models/user');
 // const cloudinary = require('../utilis/cloud');
 // const upload = require('../utilis/multer.js');
 
-const { createNewUser, getAllUsers } = require('../controllers/user');
+const {
+  createNewUser,
+  getAllUsers,
+  getOneUser,
+} = require('../controllers/user');
 
 router.route('/create').post(createNewUser);
 router.route('/get', authenticateToken).get(getAllUsers);
+router.route('/get/:id').get(getOneUser);
 
 router.patch(
   '/upload/:id',
