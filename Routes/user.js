@@ -11,11 +11,13 @@ const {
   createNewUser,
   getAllUsers,
   getOneUser,
+  updateUserProfile,
 } = require('../controllers/user');
 
 router.route('/create').post(createNewUser);
 router.route('/get', authenticateToken).get(getAllUsers);
 router.route('/get/:id').get(getOneUser);
+router.route('/updateprofile/:id').patch(updateUserProfile);
 
 router.patch(
   '/upload/:id',

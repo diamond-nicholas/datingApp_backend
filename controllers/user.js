@@ -60,8 +60,26 @@ const getOneUser = async (req, res) => {
   }
 };
 
+const updateUserProfile = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const update = req.body;
+    const options = {
+      new: true,
+    };
+    const user = await Users.findByIdAndUpdate(id, update, options);
+    return res.status(201).json({
+      message: 'Profile successfully updated',
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   createNewUser,
   getAllUsers,
   getOneUser,
+  updateUserProfile,
 };

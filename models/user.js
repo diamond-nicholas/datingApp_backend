@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema({
       values: ['male', 'female'],
       message: '{VALUE} is not supported',
     },
+    default: null,
   },
   date_created: {
     type: Date,
