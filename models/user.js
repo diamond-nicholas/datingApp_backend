@@ -36,13 +36,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  sex: {
+  dob: {
+    type: Date,
+    default: null,
+  },
+  gender: {
     type: String,
     enum: {
       values: ['male', 'female'],
       message: '{VALUE} is not supported',
     },
-    default: null,
+    // default: null,
   },
   date_created: {
     type: Date,

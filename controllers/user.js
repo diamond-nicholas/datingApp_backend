@@ -9,13 +9,16 @@ const createNewUser = async (req, res) => {
       return res.status(402).json({ message: 'No request body' });
     }
     if (!name || !email || !password) {
-      return res.status(402).json({ message: 'User fields cannot be empty' });
+      return res
+        .status(402)
+        .json({ status: false, message: 'User fields cannot be empty' });
     }
     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
       expiresIn: '14d',
     });
     const user = await Users.create({ ...req.body });
     return res.status(201).json({
+      status: true,
       message: 'User succesfully created',
       token,
       user: user,
@@ -30,22 +33,29 @@ const signInUser = async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
       return res
+
         .status(400)
         .json({ message: 'Please provide email and password' });
     }
     const user = await Users.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid Credentials' });
+      return res
+        .status(400)
+        .json({ status: false, message: 'Invalid Credentials' });
     }
 
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res
+        .status(400)
+        .json({ status: false, message: 'Invalid credentials' });
     }
     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
       expiresIn: '180s',
     });
-    return res.status(200).json({ message: 'success', token, user });
+    return res
+      .status(200)
+      .json({ status: true, message: 'success', token, user });
   } catch (error) {
     return res.status(500).json(error);
   }
