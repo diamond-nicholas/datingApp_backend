@@ -11,7 +11,8 @@ const createNewConv = async (req, res) => {
     const savedConversation = await newConversaton.save();
     res.status(200).json(savedConversation);
   } catch (error) {
-    res.status(500).json(error);
+    // res.status(500).json(error);
+    console.log(error);
   }
 };
 

@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/dating', datingCards);
 app.use('/api/v1/users', users);
-app.use('api/v1/conversation', conversation);
-app.use('api/v1/message', message);
+app.use('/api/v1/conversation', conversation);
+app.use('/api/v1/message', message);
 
 //listener
 const start = async () => {
