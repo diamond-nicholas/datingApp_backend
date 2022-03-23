@@ -11,11 +11,23 @@ const createNewConv = async (req, res) => {
     const savedConversation = await newConversaton.save();
     res.status(200).json(savedConversation);
   } catch (error) {
-    // res.status(500).json(error);
-    console.log(error);
+    res.status(500).json(error);
+    // console.log(error);
   }
 };
 
 //get conversation of a user
 
-module.exports = { createNewConv };
+const getConversation = async (req, res) => {
+  try {
+    const conversation = await Conversation.find({
+      members: { $in: [req.params.id] },
+    });
+
+    res.status(200).json(conversation);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+module.exports = { createNewConv, getConversation };
